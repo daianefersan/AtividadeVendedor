@@ -15,8 +15,10 @@ public class LancamentoVendas {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private LocalDate data;
 	private Double valor;
+	
 	@ManyToOne
 	@JoinColumn(name = "Id_vendedor")
 	private Vendedor vendedor;
