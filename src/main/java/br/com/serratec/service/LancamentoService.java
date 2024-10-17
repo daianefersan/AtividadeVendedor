@@ -13,19 +13,29 @@ import br.com.serratec.entity.LancamentoVendas;
 import br.com.serratec.repository.LancamentoRepository;
 import jakarta.persistence.EntityNotFoundException;
 
+
+    
 @Service
 public class LancamentoService {
 	
 	@Autowired
 	private LancamentoRepository repository;
 	
-	public LancamentoVendas listarPorId(Long id) {
-		return repository.findById(id).orElseThrow
-				(() -> new EntityNotFoundException("Lançamento não existente"));
+	public LancamentoVendaResponseDTO listarPorId(Long id) {
+	    LancamentoVendas lancamento = repository.findById(id).orElse(null);
+	    if(lancamento == null) {
+	    	throw new EntityNotFoundException("Lançamento não existente.");
+	    }
+	    return new LancamentoVendaResponseDTO(lancamento);
 	}
 	
-	public LancamentoVendas inserirLancamento(LancamentoVendas lancamento) {
-		return repository.save(lancamento);
+	public LancamentoVendaResponseDTO inserirlancamento(LancamentoVendaResponseDTO dto) {
+		LancamentoVendas lancamentovendas = new LancamentoVendas();		
+		lancamentovendas.setData(dto.getData());
+		lancamentovendas.setValor(dto.getValor());
+		repository.save(lancamentovendas);
+		
+		return new LancamentoVendaResponseDTO(lancamentovendas);
 	}
 
 	public Page<LancamentoVendas> listarPorPagina(Pageable pageable) {	
