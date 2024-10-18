@@ -1,47 +1,43 @@
 package br.com.serratec.dto;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import br.com.serratec.entity.LancamentoVendas;
-import br.com.serratec.entity.Vendedor;
 
-public class LancamentoVendaResponseDTO {
+public class LancamentoVendaRequestDTO {
+
 	private LocalDate data;
 	private Double valor;
-	private String nomeVendedor;
+	private Long idVendedor;
 	
-	public LancamentoVendaResponseDTO(LancamentoVendas lancamentos) {
-		
+	public LancamentoVendaRequestDTO(LancamentoVendas lancamentos) {
+		super();
 		this.data = lancamentos.getData();
 		this.valor = lancamentos.getValor();
-		this.nomeVendedor = lancamentos.getVendedor().getNome();
+		this.idVendedor = lancamentos.getVendedor().getId() ;
 	}
-
-
+	
+	public LancamentoVendaRequestDTO() {
+	}
+	
 	public LocalDate getData() {
 		return data;
 	}
-
 	public void setData(LocalDate data) {
 		this.data = data;
 	}
-
 	public Double getValor() {
 		return valor;
 	}
-
 	public void setValor(Double valor) {
 		this.valor = valor;
 	}
-
-	public String getNomeVendedor() {
-		return nomeVendedor;
+	
+	public Long getIdVendedor() {
+		return idVendedor;
+	}
+	public void setIdVendedor(Long idVendedor) {
+		this.idVendedor = idVendedor;
 	}
 
-	public void setNomeVendedor(String nomeVendedor) {
-		this.nomeVendedor = nomeVendedor;
-	}
-	
-	
 }

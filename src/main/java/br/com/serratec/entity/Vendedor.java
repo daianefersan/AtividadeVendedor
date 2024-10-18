@@ -1,6 +1,7 @@
 package br.com.serratec.entity;
 
 import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,7 +13,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "Vendedor_autonomo")
+@DiscriminatorColumn(name = "tipo_vendedor", discriminatorType = DiscriminatorType.STRING)
 @Entity
 public abstract class Vendedor {
 	
